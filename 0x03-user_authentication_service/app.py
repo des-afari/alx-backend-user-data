@@ -49,7 +49,7 @@ def login() -> str:
     message = {"email": email, "message": "logged in"}
     response = jsonify(message)
     response.set_cookie("session_id", session_id)
-    return response
+    return jsonify({"email": email, "message":"logged in"}
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
