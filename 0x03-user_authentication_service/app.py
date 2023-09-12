@@ -47,8 +47,9 @@ def login() -> str:
         abort(401)
     session_id = AUTH.create_session(email)
     message = {"email": email, "message": "logged in"}
+    response = jsonify(message)
     response.set_cookie("session_id", session_id)
-    return jsonify(message)
+    return response
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
