@@ -37,3 +37,13 @@ class DB:
         self._session.commit()
 
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """filters a table to find item"""
+        try:
+            item = self._session.query(User).filter(**kwargs).first()
+        except TypeError:
+            raise InvalidRequestError
+        except item is None:
+            raise NoResultFound
+        return item
